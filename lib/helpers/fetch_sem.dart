@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 Future<Sem> fetchSem(int user_id) async {
-  var url = "https://grade-management-sys-api.onrender.com/student/semester/${user_id}";
+  var url = "https://grade-management-sys-api-euc.onrender.com/student/semester/${user_id}";
   final response = await http.get(Uri.parse(url));
 
   if (response.statusCode == 200) {
