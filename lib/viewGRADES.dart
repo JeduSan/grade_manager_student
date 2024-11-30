@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 // import 'package:euc_grading_system/classes/sem.dart';
 import 'package:euc_grading_system/helpers/fetch_sem.dart';
 import 'package:euc_grading_system/helpers/fetch_subject.dart';
+
+import 'package:euc_grading_system/about.dart';
+
 import 'login.dart';
 
 class ViewGrades extends StatefulWidget {
@@ -744,10 +747,32 @@ class _ViewGradesState extends State<ViewGrades> {
                     ],
                   ),
                 ),
+
+                PopupMenuItem(
+                  value: 'about',
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.info_outline,
+                        color: Color.fromARGB(255, 162, 16, 5),
+                      ),
+                      SizedBox(width: 8),
+                      Text('About'),
+                    ],
+                  ),
+                ),
+
               ],
               onSelected: (value) {
                 if (value == 'logout') {
                   _handleLogout(context);
+
+                } else if (value == 'about') {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => About()),
+                  );
+
                 }
               },
             ),

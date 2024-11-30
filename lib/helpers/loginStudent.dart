@@ -4,7 +4,7 @@ import 'dart:convert';
 
 Future<Login> loginStudent(String input_type, String password) async {
   // var url = 'http://localhost:3000/login';
-  var url = 'https://grade-management-sys-api.onrender.com/login';
+  var url = 'https://grade-management-sys-api-euc.onrender.com/login';
   final response = await http.post(
     Uri.parse(url),
     headers: <String, String>{

@@ -2,6 +2,7 @@ import 'package:euc_grading_system/classes/student.dart';
 import 'package:euc_grading_system/helpers/fetch_student.dart';
 import 'package:flutter/material.dart';
 import 'viewGRADES.dart';
+import 'package:euc_grading_system/about.dart';
 import 'login.dart';
 
 class StudentDashboard extends StatefulWidget {
@@ -84,7 +85,10 @@ class _StudentDashboardState extends State<StudentDashboard> {
         _scholarship_type = student.scholarship_type;
         _total_units = student.total_units;
         _grade_status = student.grade_status;
-        _total_subjects = _grade_status["completed"] + _grade_status["pending"] + _grade_status["failed"] + _grade_status["inc"];
+        _total_subjects = _grade_status["completed"] +
+            _grade_status["pending"] +
+            _grade_status["failed"] +
+            _grade_status["inc"];
       });
     }, onError: (e) {
       print("ERROR HERE: ${e}");
@@ -123,7 +127,12 @@ class _StudentDashboardState extends State<StudentDashboard> {
                             return LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
-                              colors: [Colors.black.withOpacity(0.7), Colors.black.withOpacity(0.3)],
+
+                              colors: [
+                                Colors.black.withOpacity(0.7),
+                                Colors.black.withOpacity(0.3)
+                              ],
+
                             ).createShader(rect);
                           },
                           blendMode: BlendMode.dstIn,
@@ -203,13 +212,19 @@ class _StudentDashboardState extends State<StudentDashboard> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => ViewGrades(user_id: widget.user_id),
+
+                                          builder: (context) => ViewGrades(
+                                              user_id: widget.user_id),
+
                                         ),
                                       );
                                     },
                                     borderRadius: BorderRadius.circular(16),
                                     child: Container(
-                                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 24, vertical: 12),
+                                      
                                       decoration: BoxDecoration(
                                         color: Color.fromARGB(255, 162, 16, 5),
                                         borderRadius: BorderRadius.circular(16),
@@ -242,10 +257,32 @@ class _StudentDashboardState extends State<StudentDashboard> {
                       childAspectRatio: 1.5,
                       physics: NeverScrollableScrollPhysics(),
                       children: [
-                        _buildInfoCard('GWA for current semester', _gwa.toString(), Colors.black, Colors.white, Color.fromARGB(255, 162, 16, 5)),
-                        _buildInfoCard('You are eligible for', _scholarship_type, Colors.black, Colors.white, Color.fromARGB(255, 162, 16, 5), specialFontSize: 14.0),
-                        _buildInfoCard('Total Units', _total_units.toString(), Colors.white, Color.fromARGB(255, 162, 16, 5), Colors.white),
-                        _buildInfoCard('Total Subjects', _total_subjects.toString(), Colors.white, Color.fromARGB(255, 162, 16, 5), Colors.white),
+
+                        _buildInfoCard(
+                            'GWA for current semester',
+                            _gwa.toString(),
+                            Colors.black,
+                            Colors.white,
+                            Color.fromARGB(255, 162, 16, 5)),
+                        _buildInfoCard(
+                            'You are eligible for',
+                            _scholarship_type,
+                            Colors.black,
+                            Colors.white,
+                            Color.fromARGB(255, 162, 16, 5),
+                            specialFontSize: 14.0),
+                        _buildInfoCard(
+                            'Total Units',
+                            _total_units.toString(),
+                            Colors.white,
+                            Color.fromARGB(255, 162, 16, 5),
+                            Colors.white),
+                        _buildInfoCard(
+                            'Total Subjects',
+                            _total_subjects.toString(),
+                            Colors.white,
+                            Color.fromARGB(255, 162, 16, 5),
+                            Colors.white),
                       ],
                     ),
                   ),
@@ -279,10 +316,18 @@ class _StudentDashboardState extends State<StudentDashboard> {
                           ),
                           Divider(color: Colors.black),
                           SizedBox(height: 6),
-                          _buildGradeStatusRow('Complete', _grade_status["completed"].toString(), Colors.black),
-                          _buildGradeStatusRow('Pending', _grade_status["pending"].toString(), Colors.black),
-                          _buildGradeStatusRow('INC', _grade_status["inc"].toString(), Colors.black),
-                          _buildGradeStatusRow('Failed', _grade_status["failed"].toString(), Colors.black),
+                          _buildGradeStatusRow(
+                              'Complete',
+                              _grade_status["completed"].toString(),
+                              Colors.black),
+                          _buildGradeStatusRow(
+                              'Pending',
+                              _grade_status["pending"].toString(),
+                              Colors.black),
+                          _buildGradeStatusRow('INC',
+                              _grade_status["inc"].toString(), Colors.black),
+                          _buildGradeStatusRow('Failed',
+                              _grade_status["failed"].toString(), Colors.black),
                         ],
                       ),
                     ),
@@ -314,10 +359,30 @@ class _StudentDashboardState extends State<StudentDashboard> {
                       ],
                     ),
                   ),
+                  PopupMenuItem(
+                    value: 'about',
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.info_outline,
+                          color: Color.fromARGB(255, 162, 16, 5),
+                        ),
+                        SizedBox(width: 8),
+                        Text('About'),
+
+                      ],
+                    ),
+                  ),
                 ],
                 onSelected: (value) {
                   if (value == 'logout') {
                     _handleLogout(context);
+
+                  } else if (value == 'about') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => About()),
+                    );
                   }
                 },
               ),
@@ -328,7 +393,9 @@ class _StudentDashboardState extends State<StudentDashboard> {
     );
   }
 
-  Widget _buildInfoCard(String title, String value, Color valueColor, Color backgroundColor, Color titleColor, {double? specialFontSize}) {
+  Widget _buildInfoCard(String title, String value, Color valueColor,
+      Color backgroundColor, Color titleColor,
+      {double? specialFontSize}) {
     return Container(
       decoration: BoxDecoration(
         color: backgroundColor,
