@@ -127,10 +127,12 @@ class _StudentDashboardState extends State<StudentDashboard> {
                             return LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
+
                               colors: [
                                 Colors.black.withOpacity(0.7),
                                 Colors.black.withOpacity(0.3)
                               ],
+
                             ).createShader(rect);
                           },
                           blendMode: BlendMode.dstIn,
@@ -210,15 +212,19 @@ class _StudentDashboardState extends State<StudentDashboard> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
+
                                           builder: (context) => ViewGrades(
                                               user_id: widget.user_id),
+
                                         ),
                                       );
                                     },
                                     borderRadius: BorderRadius.circular(16),
                                     child: Container(
+
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 24, vertical: 12),
+                                      
                                       decoration: BoxDecoration(
                                         color: Color.fromARGB(255, 162, 16, 5),
                                         borderRadius: BorderRadius.circular(16),
@@ -251,6 +257,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
                       childAspectRatio: 1.5,
                       physics: NeverScrollableScrollPhysics(),
                       children: [
+
                         _buildInfoCard(
                             'GWA for current semester',
                             _gwa.toString(),
@@ -362,6 +369,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
                         ),
                         SizedBox(width: 8),
                         Text('About'),
+
                       ],
                     ),
                   ),
@@ -369,6 +377,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
                 onSelected: (value) {
                   if (value == 'logout') {
                     _handleLogout(context);
+
                   } else if (value == 'about') {
                     Navigator.push(
                       context,
